@@ -12,8 +12,9 @@ set(CMAKE_INCLUDE_CURRENT_DIR ON)
 find_package(Qt5 COMPONENTS Gui REQUIRED)
 
 # EDIT: add your (non-test) source files to this list
-set(src
-  
+set(src 
+  geometry.cpp geometry.hpp
+  json_parsing_error.hpp
   )
 
 # EDIT: add any additional test source files to this list
