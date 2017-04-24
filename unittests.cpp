@@ -65,7 +65,8 @@ TEST_CASE("Test Validation Function For Camera", "[geometry]")
 		"}";
 
 		bool ok = true;
-		try{
+		try
+		{
 			Geometry geo(str);
 		}
 		catch(JSONParsingError& error)
@@ -408,6 +409,1465 @@ TEST_CASE("Test Validation Function For Camera", "[geometry]")
 
 		bool ok = true;
 		try{
+			Geometry geo(str);
+		}
+		catch(JSONParsingError& error)
+		{
+			ok = false;
+		}
+		REQUIRE(!ok);
+	}
+
+	{ //bad size
+		std::string str =	
+		"{ "
+			"\"camera\": { "
+		        "\"center\": { \"x\": 0, \"y\": 0, \"z\": 0}, "
+		        "\"focus\": 10, "
+		        "\"normal\": { \"x\": 0, \"y\": 0, \"z\": 1}, "
+		        "\"resolution\": [0.01, 0.01], "
+		        "\"size\": [\"bad\", \"bad\"] "
+		    "}, "
+		    "\"lights\": [ "
+		        "{ "
+		            "\"intensity\": 1, "
+		            "\"location\": { \"x\": 5, \"y\": -5, \"z\": 0} "
+		        "} "
+		    "], "
+		    "\"objects\": [ "
+		        "{ "
+		            "\"center\": { \"x\": 0, \"y\": 0, \"z\": 5}, "
+		            "\"color\": {\"b\": 0, \"g\": 0, \"r\": 255}, "
+		            "\"lambert\": 1, "
+		            "\"radius\": 1, "
+		            "\"type\": \"sphere\" "
+		        "} "
+		    "] "
+		"}";
+
+		bool ok = true;
+		try
+		{
+			Geometry geo(str);
+		}
+		catch(JSONParsingError& error)
+		{
+			ok = false;
+		}
+		REQUIRE(!ok);
+	}
+
+	{ //neg size
+		std::string str =	
+		"{ "
+			"\"camera\": { "
+		        "\"center\": { \"x\": 0, \"y\": 0, \"z\": 0}, "
+		        "\"focus\": 10, "
+		        "\"normal\": { \"x\": 0, \"y\": 0, \"z\": 1}, "
+		        "\"resolution\": [0.01, 0.01], "
+		        "\"size\": [-1,-1] "
+		    "}, "
+		    "\"lights\": [ "
+		        "{ "
+		            "\"intensity\": 1, "
+		            "\"location\": { \"x\": 5, \"y\": -5, \"z\": 0} "
+		        "} "
+		    "], "
+		    "\"objects\": [ "
+		        "{ "
+		            "\"center\": { \"x\": 0, \"y\": 0, \"z\": 5}, "
+		            "\"color\": {\"b\": 0, \"g\": 0, \"r\": 255}, "
+		            "\"lambert\": 1, "
+		            "\"radius\": 1, "
+		            "\"type\": \"sphere\" "
+		        "} "
+		    "] "
+		"}";
+
+		bool ok = true;
+		try
+		{
+			Geometry geo(str);
+		}
+		catch(JSONParsingError& error)
+		{
+			ok = false;
+		}
+		REQUIRE(!ok);
+	}
+
+	{ //float size
+		std::string str =	
+		"{ "
+			"\"camera\": { "
+		        "\"center\": { \"x\": 0, \"y\": 0, \"z\": 0}, "
+		        "\"focus\": 10, "
+		        "\"normal\": { \"x\": 0, \"y\": 0, \"z\": 1}, "
+		        "\"resolution\": [0.01, 0.01], "
+		        "\"size\": [1.5,1.5] "
+		    "}, "
+		    "\"lights\": [ "
+		        "{ "
+		            "\"intensity\": 1, "
+		            "\"location\": { \"x\": 5, \"y\": -5, \"z\": 0} "
+		        "} "
+		    "], "
+		    "\"objects\": [ "
+		        "{ "
+		            "\"center\": { \"x\": 0, \"y\": 0, \"z\": 5}, "
+		            "\"color\": {\"b\": 0, \"g\": 0, \"r\": 255}, "
+		            "\"lambert\": 1, "
+		            "\"radius\": 1, "
+		            "\"type\": \"sphere\" "
+		        "} "
+		    "] "
+		"}";
+
+		bool ok = true;
+		try
+		{
+			Geometry geo(str);
+		}
+		catch(JSONParsingError& error)
+		{
+			ok = false;
+		}
+		REQUIRE(!ok);
+	}
+}
+
+TEST_CASE("Test Validation Function For Lights", "[geometry]")
+{
+	/*
+	{
+		std::string str =	
+		"{ "
+			"\"camera\": { "
+		        "\"center\": { \"x\": 0, \"y\": 0, \"z\": 0}, "
+		        "\"focus\": 10, "
+		        "\"normal\": { \"x\": 0, \"y\": 0, \"z\": 1}, "
+		        "\"resolution\": [0.01, 0.01], "
+		        "\"size\": [256,256] "
+		    "}, "
+		    "\"lights\": [ "
+		        "{ "
+		            "\"intensity\": 1, "
+		            "\"location\": { \"x\": 5, \"y\": -5, \"z\": 0} "
+		        "} "
+		    "], "
+		    "\"objects\": [ "
+		        "{ "
+		            "\"center\": { \"x\": 0, \"y\": 0, \"z\": 5}, "
+		            "\"color\": {\"b\": 0, \"g\": 0, \"r\": 255}, "
+		            "\"lambert\": 1, "
+		            "\"radius\": 1, "
+		            "\"type\": \"sphere\" "
+		        "} "
+		    "] "
+		"}";
+
+		bool ok = true;
+		try
+		{
+			Geometry geo(str);
+		}
+		catch(JSONParsingError& error)
+		{
+			ok = false;
+		}
+		REQUIRE(!ok);
+	}
+	*/
+
+	{ //bad intensity
+		std::string str =	
+		"{ "
+			"\"camera\": { "
+		        "\"center\": { \"x\": 0, \"y\": 0, \"z\": 0}, "
+		        "\"focus\": 10, "
+		        "\"normal\": { \"x\": 0, \"y\": 0, \"z\": 1}, "
+		        "\"resolution\": [0.01, 0.01], "
+		        "\"size\": [256,256] "
+		    "}, "
+		    "\"lights\": [ "
+		        "{ "
+		            "\"intensity\": \"bad\", "
+		            "\"location\": { \"x\": 5, \"y\": -5, \"z\": 0} "
+		        "} "
+		    "], "
+		    "\"objects\": [ "
+		        "{ "
+		            "\"center\": { \"x\": 0, \"y\": 0, \"z\": 5}, "
+		            "\"color\": {\"b\": 0, \"g\": 0, \"r\": 255}, "
+		            "\"lambert\": 1, "
+		            "\"radius\": 1, "
+		            "\"type\": \"sphere\" "
+		        "} "
+		    "] "
+		"}";
+
+		bool ok = true;
+		try
+		{
+			Geometry geo(str);
+		}
+		catch(JSONParsingError& error)
+		{
+			ok = false;
+		}
+		REQUIRE(!ok);
+	}
+
+	{ //neg intensity
+		std::string str =	
+		"{ "
+			"\"camera\": { "
+		        "\"center\": { \"x\": 0, \"y\": 0, \"z\": 0}, "
+		        "\"focus\": 10, "
+		        "\"normal\": { \"x\": 0, \"y\": 0, \"z\": 1}, "
+		        "\"resolution\": [0.01, 0.01], "
+		        "\"size\": [256,256] "
+		    "}, "
+		    "\"lights\": [ "
+		        "{ "
+		            "\"intensity\": -1, "
+		            "\"location\": { \"x\": 5, \"y\": -5, \"z\": 0} "
+		        "} "
+		    "], "
+		    "\"objects\": [ "
+		        "{ "
+		            "\"center\": { \"x\": 0, \"y\": 0, \"z\": 5}, "
+		            "\"color\": {\"b\": 0, \"g\": 0, \"r\": 255}, "
+		            "\"lambert\": 1, "
+		            "\"radius\": 1, "
+		            "\"type\": \"sphere\" "
+		        "} "
+		    "] "
+		"}";
+
+		bool ok = true;
+		try
+		{
+			Geometry geo(str);
+		}
+		catch(JSONParsingError& error)
+		{
+			ok = false;
+		}
+		REQUIRE(!ok);
+	}
+
+	{ //test 3 bad location
+		std::string str =	
+		"{ "
+			"\"camera\": { "
+		        "\"center\": { \"x\": 0, \"y\": 0, \"z\": 0}, "
+		        "\"focus\": 10, "
+		        "\"normal\": { \"x\": 0, \"y\": 0, \"z\": 1}, "
+		        "\"resolution\": [0.01, 0.01], "
+		        "\"size\": [256,256] "
+		    "}, "
+		    "\"lights\": [ "
+		        "{ "
+		            "\"intensity\": 1, "
+		            "\"location\": { \"x\": \"bad\", \"y\": \"bad\", \"z\": \"bad\"} "
+		        "} "
+		    "], "
+		    "\"objects\": [ "
+		        "{ "
+		            "\"center\": { \"x\": 0, \"y\": 0, \"z\": 5}, "
+		            "\"color\": {\"b\": 0, \"g\": 0, \"r\": 255}, "
+		            "\"lambert\": 1, "
+		            "\"radius\": 1, "
+		            "\"type\": \"sphere\" "
+		        "} "
+		    "] "
+		"}";
+
+		bool ok = true;
+		try
+		{
+			Geometry geo(str);
+		}
+		catch(JSONParsingError& error)
+		{
+			ok = false;
+		}
+		REQUIRE(!ok);
+	}
+
+	{ //test 2 bad location
+		std::string str =	
+		"{ "
+			"\"camera\": { "
+		        "\"center\": { \"x\": 0, \"y\": 0, \"z\": 0}, "
+		        "\"focus\": 10, "
+		        "\"normal\": { \"x\": 0, \"y\": 0, \"z\": 1}, "
+		        "\"resolution\": [0.01, 0.01], "
+		        "\"size\": [256,256] "
+		    "}, "
+		    "\"lights\": [ "
+		        "{ "
+		            "\"intensity\": 1, "
+		            "\"location\": { \"x\": 5, \"y\": \"bad\", \"z\": \"bad\"} "
+		        "} "
+		    "], "
+		    "\"objects\": [ "
+		        "{ "
+		            "\"center\": { \"x\": 0, \"y\": 0, \"z\": 5}, "
+		            "\"color\": {\"b\": 0, \"g\": 0, \"r\": 255}, "
+		            "\"lambert\": 1, "
+		            "\"radius\": 1, "
+		            "\"type\": \"sphere\" "
+		        "} "
+		    "] "
+		"}";
+
+		bool ok = true;
+		try
+		{
+			Geometry geo(str);
+		}
+		catch(JSONParsingError& error)
+		{
+			ok = false;
+		}
+		REQUIRE(!ok);
+	}
+
+	{ //test 1 bad location
+		std::string str =	
+		"{ "
+			"\"camera\": { "
+		        "\"center\": { \"x\": 0, \"y\": 0, \"z\": 0}, "
+		        "\"focus\": 10, "
+		        "\"normal\": { \"x\": 0, \"y\": 0, \"z\": 1}, "
+		        "\"resolution\": [0.01, 0.01], "
+		        "\"size\": [256,256] "
+		    "}, "
+		    "\"lights\": [ "
+		        "{ "
+		            "\"intensity\": 1, "
+		            "\"location\": { \"x\": 5, \"y\": -5, \"z\": \"bad\"} "
+		        "} "
+		    "], "
+		    "\"objects\": [ "
+		        "{ "
+		            "\"center\": { \"x\": 0, \"y\": 0, \"z\": 5}, "
+		            "\"color\": {\"b\": 0, \"g\": 0, \"r\": 255}, "
+		            "\"lambert\": 1, "
+		            "\"radius\": 1, "
+		            "\"type\": \"sphere\" "
+		        "} "
+		    "] "
+		"}";
+
+		bool ok = true;
+		try
+		{
+			Geometry geo(str);
+		}
+		catch(JSONParsingError& error)
+		{
+			ok = false;
+		}
+		REQUIRE(!ok);
+	}
+}
+
+TEST_CASE("Test Validation Function For Object Sphere", "[geometry]")
+{
+	/*
+	{
+		std::string str =	
+		"{ "
+			"\"camera\": { "
+		        "\"center\": { \"x\": 0, \"y\": 0, \"z\": 0}, "
+		        "\"focus\": 10, "
+		        "\"normal\": { \"x\": 0, \"y\": 0, \"z\": 1}, "
+		        "\"resolution\": [0.01, 0.01], "
+		        "\"size\": [256,256] "
+		    "}, "
+		    "\"lights\": [ "
+		        "{ "
+		            "\"intensity\": 1, "
+		            "\"location\": { \"x\": 5, \"y\": -5, \"z\": 0} "
+		        "} "
+		    "], "
+		    "\"objects\": [ "
+		        "{ "
+		            "\"center\": { \"x\": 0, \"y\": 0, \"z\": 5}, "
+		            "\"color\": {\"b\": 0, \"g\": 0, \"r\": 255}, "
+		            "\"lambert\": 1, "
+		            "\"radius\": 1, "
+		            "\"type\": \"sphere\" "
+		        "} "
+		    "] "
+		"}";
+
+		bool ok = true;
+		try
+		{
+			Geometry geo(str);
+		}
+		catch(JSONParsingError& error)
+		{
+			ok = false;
+		}
+		REQUIRE(!ok);
+	}
+	*/
+
+	{ //1 bad center
+		std::string str =	
+		"{ "
+			"\"camera\": { "
+		        "\"center\": { \"x\": 0, \"y\": 0, \"z\": 0}, "
+		        "\"focus\": 10, "
+		        "\"normal\": { \"x\": 0, \"y\": 0, \"z\": 1}, "
+		        "\"resolution\": [0.01, 0.01], "
+		        "\"size\": [256,256] "
+		    "}, "
+		    "\"lights\": [ "
+		        "{ "
+		            "\"intensity\": 1, "
+		            "\"location\": { \"x\": 5, \"y\": -5, \"z\": 0} "
+		        "} "
+		    "], "
+		    "\"objects\": [ "
+		        "{ " 
+		            "\"center\": { \"x\": 0, \"y\": 0, \"z\": \"bad\"}, "
+		            "\"color\": {\"b\": 0, \"g\": 0, \"r\": 255}, "
+		            "\"lambert\": 1, "
+		            "\"radius\": 1, "
+		            "\"type\": \"sphere\" "
+		        "} "
+		    "] "
+		"}";
+
+		bool ok = true;
+		try
+		{
+			Geometry geo(str);
+		}
+		catch(JSONParsingError& error)
+		{
+			ok = false;
+		}
+		REQUIRE(!ok);
+	}
+
+	{ //2 bad center
+		std::string str =	
+		"{ "
+			"\"camera\": { "
+		        "\"center\": { \"x\": 0, \"y\": 0, \"z\": 0}, "
+		        "\"focus\": 10, "
+		        "\"normal\": { \"x\": 0, \"y\": 0, \"z\": 1}, "
+		        "\"resolution\": [0.01, 0.01], "
+		        "\"size\": [256,256] "
+		    "}, "
+		    "\"lights\": [ "
+		        "{ "
+		            "\"intensity\": 1, "
+		            "\"location\": { \"x\": 5, \"y\": -5, \"z\": 0} "
+		        "} "
+		    "], "
+		    "\"objects\": [ "
+		        "{ " 
+		            "\"center\": { \"x\": 0, \"y\": \"bad\", \"z\": \"bad\"}, "
+		            "\"color\": {\"b\": 0, \"g\": 0, \"r\": 255}, "
+		            "\"lambert\": 1, "
+		            "\"radius\": 1, "
+		            "\"type\": \"sphere\" "
+		        "} "
+		    "] "
+		"}";
+
+		bool ok = true;
+		try
+		{
+			Geometry geo(str);
+		}
+		catch(JSONParsingError& error)
+		{
+			ok = false;
+		}
+		REQUIRE(!ok);
+	}
+
+	{ //3 bad center
+		std::string str =	
+		"{ "
+			"\"camera\": { "
+		        "\"center\": { \"x\": 0, \"y\": 0, \"z\": 0}, "
+		        "\"focus\": 10, "
+		        "\"normal\": { \"x\": 0, \"y\": 0, \"z\": 1}, "
+		        "\"resolution\": [0.01, 0.01], "
+		        "\"size\": [256,256] "
+		    "}, "
+		    "\"lights\": [ "
+		        "{ "
+		            "\"intensity\": 1, "
+		            "\"location\": { \"x\": 5, \"y\": -5, \"z\": 0} "
+		        "} "
+		    "], "
+		    "\"objects\": [ "
+		        "{ " 
+		            "\"center\": { \"x\": \"bad\", \"y\": \"bad\", \"z\": \"bad\"}, "
+		            "\"color\": {\"b\": 0, \"g\": 0, \"r\": 255}, "
+		            "\"lambert\": 1, "
+		            "\"radius\": 1, "
+		            "\"type\": \"sphere\" "
+		        "} "
+		    "] "
+		"}";
+
+		bool ok = true;
+		try
+		{
+			Geometry geo(str);
+		}
+		catch(JSONParsingError& error)
+		{
+			ok = false;
+		}
+		REQUIRE(!ok);
+	}
+
+	{ //bad colors
+		std::string str =	
+		"{ "
+			"\"camera\": { "
+		        "\"center\": { \"x\": 0, \"y\": 0, \"z\": 0}, "
+		        "\"focus\": 10, "
+		        "\"normal\": { \"x\": 0, \"y\": 0, \"z\": 1}, "
+		        "\"resolution\": [0.01, 0.01], "
+		        "\"size\": [256,256] "
+		    "}, "
+		    "\"lights\": [ "
+		        "{ "
+		            "\"intensity\": 1, "
+		            "\"location\": { \"x\": 5, \"y\": -5, \"z\": 0} "
+		        "} "
+		    "], "
+		    "\"objects\": [ "
+		        "{ "
+		            "\"center\": { \"x\": 0, \"y\": 0, \"z\": 5}, "
+		            "\"color\": {\"b\": \"bad\", \"g\": \"bad\", \"r\": \"bad\"}, "
+		            "\"lambert\": 1, "
+		            "\"radius\": 1, "
+		            "\"type\": \"sphere\" "
+		        "} "
+		    "] "
+		"}";
+
+		bool ok = true;
+		try
+		{
+			Geometry geo(str);
+		}
+		catch(JSONParsingError& error)
+		{
+			ok = false;
+		}
+		REQUIRE(!ok);
+	}
+
+	{ //float colors
+		std::string str =	
+		"{ "
+			"\"camera\": { "
+		        "\"center\": { \"x\": 0, \"y\": 0, \"z\": 0}, "
+		        "\"focus\": 10, "
+		        "\"normal\": { \"x\": 0, \"y\": 0, \"z\": 1}, "
+		        "\"resolution\": [0.01, 0.01], "
+		        "\"size\": [256,256] "
+		    "}, "
+		    "\"lights\": [ "
+		        "{ "
+		            "\"intensity\": 1, "
+		            "\"location\": { \"x\": 5, \"y\": -5, \"z\": 0} "
+		        "} "
+		    "], "
+		    "\"objects\": [ "
+		        "{ "
+		            "\"center\": { \"x\": 0, \"y\": 0, \"z\": 5}, "
+		            "\"color\": {\"b\": 1.5, \"g\": 1.5, \"r\": 1.5}, "
+		            "\"lambert\": 1, "
+		            "\"radius\": 1, "
+		            "\"type\": \"sphere\" "
+		        "} "
+		    "] "
+		"}";
+
+		bool ok = true;
+		try
+		{
+			Geometry geo(str);
+		}
+		catch(JSONParsingError& error)
+		{
+			ok = false;
+		}
+		REQUIRE(!ok);
+	}
+
+	{ //neg colors
+		std::string str =	
+		"{ "
+			"\"camera\": { "
+		        "\"center\": { \"x\": 0, \"y\": 0, \"z\": 0}, "
+		        "\"focus\": 10, "
+		        "\"normal\": { \"x\": 0, \"y\": 0, \"z\": 1}, "
+		        "\"resolution\": [0.01, 0.01], "
+		        "\"size\": [256,256] "
+		    "}, "
+		    "\"lights\": [ "
+		        "{ "
+		            "\"intensity\": 1, "
+		            "\"location\": { \"x\": 5, \"y\": -5, \"z\": 0} "
+		        "} "
+		    "], "
+		    "\"objects\": [ "
+		        "{ "
+		            "\"center\": { \"x\": 0, \"y\": 0, \"z\": 5}, "
+		            "\"color\": {\"b\": -5, \"g\": -5, \"r\": -5}, "
+		            "\"lambert\": 1, "
+		            "\"radius\": 1, "
+		            "\"type\": \"sphere\" "
+		        "} "
+		    "] "
+		"}";
+
+		bool ok = true;
+		try
+		{
+			Geometry geo(str);
+		}
+		catch(JSONParsingError& error)
+		{
+			ok = false;
+		}
+		REQUIRE(!ok);
+	}
+
+	{ //too high colors
+		std::string str =	
+		"{ "
+			"\"camera\": { "
+		        "\"center\": { \"x\": 0, \"y\": 0, \"z\": 0}, "
+		        "\"focus\": 10, "
+		        "\"normal\": { \"x\": 0, \"y\": 0, \"z\": 1}, "
+		        "\"resolution\": [0.01, 0.01], "
+		        "\"size\": [256,256] "
+		    "}, "
+		    "\"lights\": [ "
+		        "{ "
+		            "\"intensity\": 1, "
+		            "\"location\": { \"x\": 5, \"y\": -5, \"z\": 0} "
+		        "} "
+		    "], "
+		    "\"objects\": [ "
+		        "{ "
+		            "\"center\": { \"x\": 0, \"y\": 0, \"z\": 5}, "
+		            "\"color\": {\"b\": 300, \"g\": 300, \"r\": 300}, "
+		            "\"lambert\": 1, "
+		            "\"radius\": 1, "
+		            "\"type\": \"sphere\" "
+		        "} "
+		    "] "
+		"}";
+
+		bool ok = true;
+		try
+		{
+			Geometry geo(str);
+		}
+		catch(JSONParsingError& error)
+		{
+			ok = false;
+		}
+		REQUIRE(!ok);
+	}
+
+	{ //bad lambert
+		std::string str =	
+		"{ "
+			"\"camera\": { "
+		        "\"center\": { \"x\": 0, \"y\": 0, \"z\": 0}, "
+		        "\"focus\": 10, "
+		        "\"normal\": { \"x\": 0, \"y\": 0, \"z\": 1}, "
+		        "\"resolution\": [0.01, 0.01], "
+		        "\"size\": [256,256] "
+		    "}, "
+		    "\"lights\": [ "
+		        "{ "
+		            "\"intensity\": 1, "
+		            "\"location\": { \"x\": 5, \"y\": -5, \"z\": 0} "
+		        "} "
+		    "], "
+		    "\"objects\": [ "
+		        "{ "
+		            "\"center\": { \"x\": 0, \"y\": 0, \"z\": 5}, "
+		            "\"color\": {\"b\": 0, \"g\": 0, \"r\": 255}, "
+		            "\"lambert\": \"bad\", "
+		            "\"radius\": 1, "
+		            "\"type\": \"sphere\" "
+		        "} "
+		    "] "
+		"}";
+
+		bool ok = true;
+		try
+		{
+			Geometry geo(str);
+		}
+		catch(JSONParsingError& error)
+		{
+			ok = false;
+		}
+		REQUIRE(!ok);
+	}
+
+	{ //neg lambert
+		std::string str =	
+		"{ "
+			"\"camera\": { "
+		        "\"center\": { \"x\": 0, \"y\": 0, \"z\": 0}, "
+		        "\"focus\": 10, "
+		        "\"normal\": { \"x\": 0, \"y\": 0, \"z\": 1}, "
+		        "\"resolution\": [0.01, 0.01], "
+		        "\"size\": [256,256] "
+		    "}, "
+		    "\"lights\": [ "
+		        "{ "
+		            "\"intensity\": 1, "
+		            "\"location\": { \"x\": 5, \"y\": -5, \"z\": 0} "
+		        "} "
+		    "], "
+		    "\"objects\": [ "
+		        "{ "
+		            "\"center\": { \"x\": 0, \"y\": 0, \"z\": 5}, "
+		            "\"color\": {\"b\": 0, \"g\": 0, \"r\": 255}, "
+		            "\"lambert\": -1, "
+		            "\"radius\": 1, "
+		            "\"type\": \"sphere\" "
+		        "} "
+		    "] "
+		"}";
+
+		bool ok = true;
+		try
+		{
+			Geometry geo(str);
+		}
+		catch(JSONParsingError& error)
+		{
+			ok = false;
+		}
+		REQUIRE(!ok);
+	}
+
+	{ //too high lambert
+		std::string str =	
+		"{ "
+			"\"camera\": { "
+		        "\"center\": { \"x\": 0, \"y\": 0, \"z\": 0}, "
+		        "\"focus\": 10, "
+		        "\"normal\": { \"x\": 0, \"y\": 0, \"z\": 1}, "
+		        "\"resolution\": [0.01, 0.01], "
+		        "\"size\": [256,256] "
+		    "}, "
+		    "\"lights\": [ "
+		        "{ "
+		            "\"intensity\": 1, "
+		            "\"location\": { \"x\": 5, \"y\": -5, \"z\": 0} "
+		        "} "
+		    "], "
+		    "\"objects\": [ "
+		        "{ "
+		            "\"center\": { \"x\": 0, \"y\": 0, \"z\": 5}, "
+		            "\"color\": {\"b\": 0, \"g\": 0, \"r\": 255}, "
+		            "\"lambert\": 2, "
+		            "\"radius\": 1, "
+		            "\"type\": \"sphere\" "
+		        "} "
+		    "] "
+		"}";
+
+		bool ok = true;
+		try
+		{
+			Geometry geo(str);
+		}
+		catch(JSONParsingError& error)
+		{
+			ok = false;
+		}
+		REQUIRE(!ok);
+	}
+
+	{ //bad radius
+		std::string str =	
+		"{ "
+			"\"camera\": { "
+		        "\"center\": { \"x\": 0, \"y\": 0, \"z\": 0}, "
+		        "\"focus\": 10, "
+		        "\"normal\": { \"x\": 0, \"y\": 0, \"z\": 1}, "
+		        "\"resolution\": [0.01, 0.01], "
+		        "\"size\": [256,256] "
+		    "}, "
+		    "\"lights\": [ "
+		        "{ "
+		            "\"intensity\": 1, "
+		            "\"location\": { \"x\": 5, \"y\": -5, \"z\": 0} "
+		        "} "
+		    "], "
+		    "\"objects\": [ "
+		        "{ "
+		            "\"center\": { \"x\": 0, \"y\": 0, \"z\": 5}, "
+		            "\"color\": {\"b\": 0, \"g\": 0, \"r\": 255}, "
+		            "\"lambert\": 1, "
+		            "\"radius\": \"bad\", "
+		            "\"type\": \"sphere\" "
+		        "} "
+		    "] "
+		"}";
+
+		bool ok = true;
+		try
+		{
+			Geometry geo(str);
+		}
+		catch(JSONParsingError& error)
+		{
+			ok = false;
+		}
+		REQUIRE(!ok);
+	}
+
+	{ //neg radius
+		std::string str =	
+		"{ "
+			"\"camera\": { "
+		        "\"center\": { \"x\": 0, \"y\": 0, \"z\": 0}, "
+		        "\"focus\": 10, "
+		        "\"normal\": { \"x\": 0, \"y\": 0, \"z\": 1}, "
+		        "\"resolution\": [0.01, 0.01], "
+		        "\"size\": [256,256] "
+		    "}, "
+		    "\"lights\": [ "
+		        "{ "
+		            "\"intensity\": 1, "
+		            "\"location\": { \"x\": 5, \"y\": -5, \"z\": 0} "
+		        "} "
+		    "], "
+		    "\"objects\": [ "
+		        "{ "
+		            "\"center\": { \"x\": 0, \"y\": 0, \"z\": 5}, "
+		            "\"color\": {\"b\": 0, \"g\": 0, \"r\": 255}, "
+		            "\"lambert\": 1, "
+		            "\"radius\": -1, "
+		            "\"type\": \"sphere\" "
+		        "} "
+		    "] "
+		"}";
+
+		bool ok = true;
+		try
+		{
+			Geometry geo(str);
+		}
+		catch(JSONParsingError& error)
+		{
+			ok = false;
+		}
+		REQUIRE(!ok);
+	}
+
+}
+
+TEST_CASE("Test Validation Function For Object Plane", "[geometry]")
+{
+	/*
+	{
+		std::string str =	
+		"{ "
+			"\"camera\": { "
+		        "\"center\": { \"x\": 0, \"y\": 0, \"z\": 0}, "
+		        "\"focus\": 10, "
+		        "\"normal\": { \"x\": 0, \"y\": 0, \"z\": 1}, "
+		        "\"resolution\": [0.01, 0.01], "
+		        "\"size\": [256,256] "
+		    "}, "
+		    "\"lights\": [ "
+		        "{ "
+		            "\"intensity\": 1, "
+		            "\"location\": { \"x\": 5, \"y\": -5, \"z\": 0} "
+		        "} "
+		    "], "
+		    "\"objects\": [ "
+		        "{ "
+		            "\"center\": { \"x\": 0, \"y\": 0, \"z\": 5}, "
+		            "\"color\": {\"b\": 0, \"g\": 0, \"r\": 255}, "
+		            "\"lambert\": 1, "
+		            "\"normal\": { \"x\": 5, \"y\": -5, \"z\": 0}, "
+		            "\"type\": \"plane\" "
+		        "} "
+		    "] "
+		"}";
+
+		bool ok = true;
+		try
+		{
+			Geometry geo(str);
+		}
+		catch(JSONParsingError& error)
+		{
+			ok = false;
+		}
+		REQUIRE(!ok);
+	}
+	*/
+
+	{ //good plane
+		std::string str =	
+		"{ "
+			"\"camera\": { "
+		        "\"center\": { \"x\": 0, \"y\": 0, \"z\": 0}, "
+		        "\"focus\": 10, "
+		        "\"normal\": { \"x\": 0, \"y\": 0, \"z\": 1}, "
+		        "\"resolution\": [0.01, 0.01], "
+		        "\"size\": [256,256] "
+		    "}, "
+		    "\"lights\": [ "
+		        "{ "
+		            "\"intensity\": 1, "
+		            "\"location\": { \"x\": 5, \"y\": -5, \"z\": 0} "
+		        "} "
+		    "], "
+		    "\"objects\": [ "
+		        "{ "
+		            "\"center\": { \"x\": 0, \"y\": 0, \"z\": 5}, "
+		            "\"color\": {\"b\": 0, \"g\": 0, \"r\": 255}, "
+		            "\"lambert\": 1, "
+		            "\"normal\": { \"x\": 5, \"y\": -5, \"z\": 0}, "
+		            "\"type\": \"plane\" "
+		        "} "
+		    "] "
+		"}";
+
+		bool ok = true;
+		try
+		{
+			Geometry geo(str);
+		}
+		catch(JSONParsingError& error)
+		{
+			ok = false;
+		}
+		REQUIRE(ok);
+	}
+
+	{ //1 bad center
+		std::string str =	
+		"{ "
+			"\"camera\": { "
+		        "\"center\": { \"x\": 0, \"y\": 0, \"z\": 0}, "
+		        "\"focus\": 10, "
+		        "\"normal\": { \"x\": 0, \"y\": 0, \"z\": 1}, "
+		        "\"resolution\": [0.01, 0.01], "
+		        "\"size\": [256,256] "
+		    "}, "
+		    "\"lights\": [ "
+		        "{ "
+		            "\"intensity\": 1, "
+		            "\"location\": { \"x\": 5, \"y\": -5, \"z\": 0} "
+		        "} "
+		    "], "
+		    "\"objects\": [ "
+		        "{ "
+		            "\"center\": { \"x\": 0, \"y\": 0, \"z\": \"bad\"}, "
+		            "\"color\": {\"b\": 0, \"g\": 0, \"r\": 255}, "
+		            "\"lambert\": 1, "
+		            "\"normal\": { \"x\": 5, \"y\": -5, \"z\": 0}, "
+		            "\"type\": \"plane\" "
+		        "} "
+		    "] "
+		"}";
+
+		bool ok = true;
+		try
+		{
+			Geometry geo(str);
+		}
+		catch(JSONParsingError& error)
+		{
+			ok = false;
+		}
+		REQUIRE(!ok);
+	}
+
+	{ //2 bad center
+		std::string str =	
+		"{ "
+			"\"camera\": { "
+		        "\"center\": { \"x\": 0, \"y\": 0, \"z\": 0}, "
+		        "\"focus\": 10, "
+		        "\"normal\": { \"x\": 0, \"y\": 0, \"z\": 1}, "
+		        "\"resolution\": [0.01, 0.01], "
+		        "\"size\": [256,256] "
+		    "}, "
+		    "\"lights\": [ "
+		        "{ "
+		            "\"intensity\": 1, "
+		            "\"location\": { \"x\": 5, \"y\": -5, \"z\": 0} "
+		        "} "
+		    "], "
+		    "\"objects\": [ "
+		        "{ "
+		            "\"center\": { \"x\": 0, \"y\": \"bad\", \"z\": \"bad\"}, "
+		            "\"color\": {\"b\": 0, \"g\": 0, \"r\": 255}, "
+		            "\"lambert\": 1, "
+		            "\"normal\": { \"x\": 5, \"y\": -5, \"z\": 0}, "
+		            "\"type\": \"plane\" "
+		        "} "
+		    "] "
+		"}";
+
+		bool ok = true;
+		try
+		{
+			Geometry geo(str);
+		}
+		catch(JSONParsingError& error)
+		{
+			ok = false;
+		}
+		REQUIRE(!ok);
+	}
+
+	{ //3 bad center
+		std::string str =	
+		"{ "
+			"\"camera\": { "
+		        "\"center\": { \"x\": 0, \"y\": 0, \"z\": 0}, "
+		        "\"focus\": 10, "
+		        "\"normal\": { \"x\": 0, \"y\": 0, \"z\": 1}, "
+		        "\"resolution\": [0.01, 0.01], "
+		        "\"size\": [256,256] "
+		    "}, "
+		    "\"lights\": [ "
+		        "{ "
+		            "\"intensity\": 1, "
+		            "\"location\": { \"x\": 5, \"y\": -5, \"z\": 0} "
+		        "} "
+		    "], "
+		    "\"objects\": [ "
+		        "{ "
+		            "\"center\": { \"x\": \"bad\", \"y\": \"bad\", \"z\": \"bad\"}, "
+		            "\"color\": {\"b\": 0, \"g\": 0, \"r\": 255}, "
+		            "\"lambert\": 1, "
+		            "\"normal\": { \"x\": 5, \"y\": -5, \"z\": 0}, "
+		            "\"type\": \"plane\" "
+		        "} "
+		    "] "
+		"}";
+
+		bool ok = true;
+		try
+		{
+			Geometry geo(str);
+		}
+		catch(JSONParsingError& error)
+		{
+			ok = false;
+		}
+		REQUIRE(!ok);
+	}
+
+	{// 1 bad normal
+		std::string str =	
+		"{ "
+			"\"camera\": { "
+		        "\"center\": { \"x\": 0, \"y\": 0, \"z\": 0}, "
+		        "\"focus\": 10, "
+		        "\"normal\": { \"x\": 0, \"y\": 0, \"z\": 1}, "
+		        "\"resolution\": [0.01, 0.01], "
+		        "\"size\": [256,256] "
+		    "}, "
+		    "\"lights\": [ "
+		        "{ "
+		            "\"intensity\": 1, "
+		            "\"location\": { \"x\": 5, \"y\": -5, \"z\": 0} "
+		        "} "
+		    "], "
+		    "\"objects\": [ "
+		        "{ "
+		            "\"center\": { \"x\": 0, \"y\": 0, \"z\": 5}, "
+		            "\"color\": {\"b\": 0, \"g\": 0, \"r\": 255}, "
+		            "\"lambert\": 1, "
+		            "\"normal\": { \"x\": 5, \"y\": -5, \"z\": \"bad\"}, "
+		            "\"type\": \"plane\" "
+		        "} "
+		    "] "
+		"}";
+
+		bool ok = true;
+		try
+		{
+			Geometry geo(str);
+		}
+		catch(JSONParsingError& error)
+		{
+			ok = false;
+		}
+		REQUIRE(!ok);
+	}
+
+	{// 2 bad normal
+		std::string str =	
+		"{ "
+			"\"camera\": { "
+		        "\"center\": { \"x\": 0, \"y\": 0, \"z\": 0}, "
+		        "\"focus\": 10, "
+		        "\"normal\": { \"x\": 0, \"y\": 0, \"z\": 1}, "
+		        "\"resolution\": [0.01, 0.01], "
+		        "\"size\": [256,256] "
+		    "}, "
+		    "\"lights\": [ "
+		        "{ "
+		            "\"intensity\": 1, "
+		            "\"location\": { \"x\": 5, \"y\": -5, \"z\": 0} "
+		        "} "
+		    "], "
+		    "\"objects\": [ "
+		        "{ "
+		            "\"center\": { \"x\": 0, \"y\": 0, \"z\": 5}, "
+		            "\"color\": {\"b\": 0, \"g\": 0, \"r\": 255}, "
+		            "\"lambert\": 1, "
+		            "\"normal\": { \"x\": 5, \"y\": \"bad\", \"z\": \"bad\"}, "
+		            "\"type\": \"plane\" "
+		        "} "
+		    "] "
+		"}";
+
+		bool ok = true;
+		try
+		{
+			Geometry geo(str);
+		}
+		catch(JSONParsingError& error)
+		{
+			ok = false;
+		}
+		REQUIRE(!ok);
+	}
+
+	{// 3 bad normal
+		std::string str =	
+		"{ "
+			"\"camera\": { "
+		        "\"center\": { \"x\": 0, \"y\": 0, \"z\": 0}, "
+		        "\"focus\": 10, "
+		        "\"normal\": { \"x\": 0, \"y\": 0, \"z\": 1}, "
+		        "\"resolution\": [0.01, 0.01], "
+		        "\"size\": [256,256] "
+		    "}, "
+		    "\"lights\": [ "
+		        "{ "
+		            "\"intensity\": 1, "
+		            "\"location\": { \"x\": 5, \"y\": -5, \"z\": 0} "
+		        "} "
+		    "], "
+		    "\"objects\": [ "
+		        "{ "
+		            "\"center\": { \"x\": 0, \"y\": 0, \"z\": 5}, "
+		            "\"color\": {\"b\": 0, \"g\": 0, \"r\": 255}, "
+		            "\"lambert\": 1, "
+		            "\"normal\": { \"x\": \"bad\", \"y\": \"bad\", \"z\": \"bad\"}, "
+		            "\"type\": \"plane\" "
+		        "} "
+		    "] "
+		"}";
+
+		bool ok = true;
+		try
+		{
+			Geometry geo(str);
+		}
+		catch(JSONParsingError& error)
+		{
+			ok = false;
+		}
+		REQUIRE(!ok);
+	}
+
+	{ //neg color
+		std::string str =	
+		"{ "
+			"\"camera\": { "
+		        "\"center\": { \"x\": 0, \"y\": 0, \"z\": 0}, "
+		        "\"focus\": 10, "
+		        "\"normal\": { \"x\": 0, \"y\": 0, \"z\": 1}, "
+		        "\"resolution\": [0.01, 0.01], "
+		        "\"size\": [256,256] "
+		    "}, "
+		    "\"lights\": [ "
+		        "{ "
+		            "\"intensity\": 1, "
+		            "\"location\": { \"x\": 5, \"y\": -5, \"z\": 0} "
+		        "} "
+		    "], "
+		    "\"objects\": [ "
+		        "{ "
+		            "\"center\": { \"x\": 0, \"y\": 0, \"z\": 5}, "
+		            "\"color\": {\"b\": -1, \"g\": -1, \"r\": -1}, "
+		            "\"lambert\": 1, "
+		            "\"normal\": { \"x\": 5, \"y\": -5, \"z\": 0}, "
+		            "\"type\": \"plane\" "
+		        "} "
+		    "] "
+		"}";
+
+		bool ok = true;
+		try
+		{
+			Geometry geo(str);
+		}
+		catch(JSONParsingError& error)
+		{
+			ok = false;
+		}
+		REQUIRE(!ok);
+	}
+
+	{ //past max color
+		std::string str =	
+		"{ "
+			"\"camera\": { "
+		        "\"center\": { \"x\": 0, \"y\": 0, \"z\": 0}, "
+		        "\"focus\": 10, "
+		        "\"normal\": { \"x\": 0, \"y\": 0, \"z\": 1}, "
+		        "\"resolution\": [0.01, 0.01], "
+		        "\"size\": [256,256] "
+		    "}, "
+		    "\"lights\": [ "
+		        "{ "
+		            "\"intensity\": 1, "
+		            "\"location\": { \"x\": 5, \"y\": -5, \"z\": 0} "
+		        "} "
+		    "], "
+		    "\"objects\": [ "
+		        "{ "
+		            "\"center\": { \"x\": 0, \"y\": 0, \"z\": 5}, "
+		            "\"color\": {\"b\": 300, \"g\": 300, \"r\": 300}, "
+		            "\"lambert\": 1, "
+		            "\"normal\": { \"x\": 5, \"y\": -5, \"z\": 0}, "
+		            "\"type\": \"plane\" "
+		        "} "
+		    "] "
+		"}";
+
+		bool ok = true;
+		try
+		{
+			Geometry geo(str);
+		}
+		catch(JSONParsingError& error)
+		{
+			ok = false;
+		}
+		REQUIRE(!ok);
+	}
+
+	{ //non int color
+		std::string str =	
+		"{ "
+			"\"camera\": { "
+		        "\"center\": { \"x\": 0, \"y\": 0, \"z\": 0}, "
+		        "\"focus\": 10, "
+		        "\"normal\": { \"x\": 0, \"y\": 0, \"z\": 1}, "
+		        "\"resolution\": [0.01, 0.01], "
+		        "\"size\": [256,256] "
+		    "}, "
+		    "\"lights\": [ "
+		        "{ "
+		            "\"intensity\": 1, "
+		            "\"location\": { \"x\": 5, \"y\": -5, \"z\": 0} "
+		        "} "
+		    "], "
+		    "\"objects\": [ "
+		        "{ "
+		            "\"center\": { \"x\": 0, \"y\": 0, \"z\": 5}, "
+		            "\"color\": {\"b\": 1.5, \"g\": 1.5, \"r\": 1.5}, "
+		            "\"lambert\": 1, "
+		            "\"normal\": { \"x\": 5, \"y\": -5, \"z\": 0}, "
+		            "\"type\": \"plane\" "
+		        "} "
+		    "] "
+		"}";
+
+		bool ok = true;
+		try
+		{
+			Geometry geo(str);
+		}
+		catch(JSONParsingError& error)
+		{
+			ok = false;
+		}
+		REQUIRE(!ok);
+	}
+
+	{ //bad color
+		std::string str =	
+		"{ "
+			"\"camera\": { "
+		        "\"center\": { \"x\": 0, \"y\": 0, \"z\": 0}, "
+		        "\"focus\": 10, "
+		        "\"normal\": { \"x\": 0, \"y\": 0, \"z\": 1}, "
+		        "\"resolution\": [0.01, 0.01], "
+		        "\"size\": [256,256] "
+		    "}, "
+		    "\"lights\": [ "
+		        "{ "
+		            "\"intensity\": 1, "
+		            "\"location\": { \"x\": 5, \"y\": -5, \"z\": 0} "
+		        "} "
+		    "], "
+		    "\"objects\": [ "
+		        "{ "
+		            "\"center\": { \"x\": 0, \"y\": 0, \"z\": 5}, "
+		            "\"color\": {\"b\": \"bad\", \"g\": \"bad\", \"r\": \"bad\"}, "
+		            "\"lambert\": 1, "
+		            "\"normal\": { \"x\": 5, \"y\": -5, \"z\": 0}, "
+		            "\"type\": \"plane\" "
+		        "} "
+		    "] "
+		"}";
+
+		bool ok = true;
+		try
+		{
+			Geometry geo(str);
+		}
+		catch(JSONParsingError& error)
+		{
+			ok = false;
+		}
+		REQUIRE(!ok);
+	}
+
+	{ //bad lambert
+		std::string str =	
+		"{ "
+			"\"camera\": { "
+		        "\"center\": { \"x\": 0, \"y\": 0, \"z\": 0}, "
+		        "\"focus\": 10, "
+		        "\"normal\": { \"x\": 0, \"y\": 0, \"z\": 1}, "
+		        "\"resolution\": [0.01, 0.01], "
+		        "\"size\": [256,256] "
+		    "}, "
+		    "\"lights\": [ "
+		        "{ "
+		            "\"intensity\": 1, "
+		            "\"location\": { \"x\": 5, \"y\": -5, \"z\": 0} "
+		        "} "
+		    "], "
+		    "\"objects\": [ "
+		        "{ "
+		            "\"center\": { \"x\": 0, \"y\": 0, \"z\": 5}, "
+		            "\"color\": {\"b\": 0, \"g\": 0, \"r\": 255}, "
+		            "\"lambert\": \"bad\", "
+		            "\"normal\": { \"x\": 5, \"y\": -5, \"z\": 0}, "
+		            "\"type\": \"plane\" "
+		        "} "
+		    "] "
+		"}";
+
+		bool ok = true;
+		try
+		{
+			Geometry geo(str);
+		}
+		catch(JSONParsingError& error)
+		{
+			ok = false;
+		}
+		REQUIRE(!ok);
+	}
+
+	{ //neg lambert
+		std::string str =	
+		"{ "
+			"\"camera\": { "
+		        "\"center\": { \"x\": 0, \"y\": 0, \"z\": 0}, "
+		        "\"focus\": 10, "
+		        "\"normal\": { \"x\": 0, \"y\": 0, \"z\": 1}, "
+		        "\"resolution\": [0.01, 0.01], "
+		        "\"size\": [256,256] "
+		    "}, "
+		    "\"lights\": [ "
+		        "{ "
+		            "\"intensity\": 1, "
+		            "\"location\": { \"x\": 5, \"y\": -5, \"z\": 0} "
+		        "} "
+		    "], "
+		    "\"objects\": [ "
+		        "{ "
+		            "\"center\": { \"x\": 0, \"y\": 0, \"z\": 5}, "
+		            "\"color\": {\"b\": 0, \"g\": 0, \"r\": 255}, "
+		            "\"lambert\": -1, "
+		            "\"normal\": { \"x\": 5, \"y\": -5, \"z\": 0}, "
+		            "\"type\": \"plane\" "
+		        "} "
+		    "] "
+		"}";
+
+		bool ok = true;
+		try
+		{
+			Geometry geo(str);
+		}
+		catch(JSONParsingError& error)
+		{
+			ok = false;
+		}
+		REQUIRE(!ok);
+	}
+
+	{ //high lambert
+		std::string str =	
+		"{ "
+			"\"camera\": { "
+		        "\"center\": { \"x\": 0, \"y\": 0, \"z\": 0}, "
+		        "\"focus\": 10, "
+		        "\"normal\": { \"x\": 0, \"y\": 0, \"z\": 1}, "
+		        "\"resolution\": [0.01, 0.01], "
+		        "\"size\": [256,256] "
+		    "}, "
+		    "\"lights\": [ "
+		        "{ "
+		            "\"intensity\": 1, "
+		            "\"location\": { \"x\": 5, \"y\": -5, \"z\": 0} "
+		        "} "
+		    "], "
+		    "\"objects\": [ "
+		        "{ "
+		            "\"center\": { \"x\": 0, \"y\": 0, \"z\": 5}, "
+		            "\"color\": {\"b\": 0, \"g\": 0, \"r\": 255}, "
+		            "\"lambert\": 5, "
+		            "\"normal\": { \"x\": 5, \"y\": -5, \"z\": 0}, "
+		            "\"type\": \"plane\" "
+		        "} "
+		    "] "
+		"}";
+
+		bool ok = true;
+		try
+		{
 			Geometry geo(str);
 		}
 		catch(JSONParsingError& error)
