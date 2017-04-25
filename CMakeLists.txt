@@ -15,6 +15,7 @@ find_package(Qt5 COMPONENTS Gui REQUIRED)
 set(src 
   geometry.cpp geometry.hpp
   json_parsing_error.hpp
+  raytracer.cpp raytracer.hpp
   )
 
 # EDIT: add any additional test source files to this list

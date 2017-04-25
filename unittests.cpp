@@ -6,8 +6,10 @@
 // Depending on your code design your class and functions names would differ
 
 #include "geometry.hpp"
+#include "raytracer.hpp"
 #include "json_parsing_error.hpp"
 #include <string>
+#include <QImage>
 
 /*TEST_CASE( "Test Basic Geometry: Vec3d ", "[geometry]" ) {
 
@@ -1875,5 +1877,92 @@ TEST_CASE("Test Validation Function For Object Plane", "[geometry]")
 			ok = false;
 		}
 		REQUIRE(!ok);
+	}
+}
+
+TEST_CASE("Test Running Program", "[raytracer]")
+{
+	{
+		std::string str =	
+		"{ "
+			"\"camera\": { "
+		        "\"center\": { \"x\": 0, \"y\": 0, \"z\": 0}, "
+		        "\"focus\": 10, "
+		        "\"normal\": { \"x\": 0, \"y\": 0, \"z\": 1}, "
+		        "\"resolution\": [0.01, 0.01], "
+		        "\"size\": [256,256] "
+		    "}, "
+		    "\"lights\": [ "
+		        "{ "
+		            "\"intensity\": 1, "
+		            "\"location\": { \"x\": 5, \"y\": -5, \"z\": 0} "
+		        "} "
+		    "], "
+		    "\"objects\": [ "
+		        "{ "
+		            "\"center\": { \"x\": 0, \"y\": 0, \"z\": 5}, "
+		            "\"color\": {\"b\": 0, \"g\": 0, \"r\": 255}, "
+		            "\"lambert\": 1, "
+		            "\"radius\": 1, "
+		            "\"type\": \"sphere\" "
+		        "} "
+		    "] "
+		"}";
+
+		bool ok = true;
+		try
+		{
+			Geometry geo(str);
+			Raytracer rt;
+			rt.generateImage(geo);
+			QImage pic = rt.getImage();
+		}
+		catch(JSONParsingError& error)
+		{
+			ok = false;
+		}
+		REQUIRE(ok);
+	}
+
+	{ //good plane
+		std::string str =	
+		"{ "
+			"\"camera\": { "
+		        "\"center\": { \"x\": 0, \"y\": 0, \"z\": 0}, "
+		        "\"focus\": 10, "
+		        "\"normal\": { \"x\": 0, \"y\": 0, \"z\": 1}, "
+		        "\"resolution\": [0.01, 0.01], "
+		        "\"size\": [256,256] "
+		    "}, "
+		    "\"lights\": [ "
+		        "{ "
+		            "\"intensity\": 1, "
+		            "\"location\": { \"x\": 5, \"y\": -5, \"z\": 0} "
+		        "} "
+		    "], "
+		    "\"objects\": [ "
+		        "{ "
+		            "\"center\": { \"x\": 0, \"y\": 0, \"z\": 5}, "
+		            "\"color\": {\"b\": 0, \"g\": 0, \"r\": 255}, "
+		            "\"lambert\": 1, "
+		            "\"normal\": { \"x\": 5, \"y\": -5, \"z\": 0}, "
+		            "\"type\": \"plane\" "
+		        "} "
+		    "] "
+		"}";
+
+		bool ok = true;
+		try
+		{
+			Geometry geo(str);
+			Raytracer rt;
+			rt.generateImage(geo);
+			QImage pic = rt.getImage();
+		}
+		catch(JSONParsingError& error)
+		{
+			ok = false;
+		}
+		REQUIRE(ok);
 	}
 }

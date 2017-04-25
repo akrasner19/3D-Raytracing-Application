@@ -83,6 +83,7 @@ Geometry::Geometry(std::string filetext)
 			newShape.normal.y = temppoint.value("y").toDouble();
 			newShape.normal.z = temppoint.value("z").toDouble();
 		}
+		this->shapes.push_back(newShape);
 	}
 }
 
@@ -244,6 +245,78 @@ bool isValidRes(QJsonValue val)
 		good = false;
 	}
 	return good;
+}
+
+Point addPts(Point p1, Point p2)
+{
+	Point ans;
+	ans.x = p1.x + p2.x;
+	ans.y = p1.y + p2.y;
+	ans.z = p1.z + p2.z;
+	return ans;
+}
+
+Point multPt(Point p, double factor)
+{
+	Point ans;
+	ans.x = p.x * factor;
+	ans.y = p.y * factor;
+	ans.z = p.z * factor;
+	return ans;
+}
+
+Point subPts(Point p1, Point p2)
+{
+	Point ans;
+	ans.x = p1.x - p2.x;
+	ans.y = p1.y - p2.y;
+	ans.z = p1.z - p2.z;
+	return ans;
+}
+
+double dist(Point p1, Point p2)
+{
+	return sqrt(pow((p1.x - p2.x), 2) + pow((p1.y - p2.y), 2) + pow((p1.z - p2.z), 2));
+}
+
+/*
+double dist(Line3d line)
+{
+	return dist(line.startpt, line.endpt);
+}*/
+
+double dotProduct(Point p1, Point p2)
+{
+	return p1.x * p2.x + p1.y * p2.y + p1.z * p2.z;
+}
+
+bool solveQuadratic(double a, double b, double c, double& t1, double& t2)
+{
+	double discriminant = b * b - 4 * a * c;
+	if (discriminant < 0)
+	{
+		return false;
+	}
+	else if (discriminant == 0)
+	{
+		t1 = - 0.5 * b / a;
+		t2 = t1;
+	}
+	else
+	{
+		double quotient;
+		if (b > 0)
+		{
+			quotient = -0.5*(b + sqrt(discriminant));
+		}
+		else
+		{
+			quotient = -0.5*(b - sqrt(discriminant));
+		}
+		t1 = quotient / a;
+		t2 = c / quotient;
+	}
+	return true;
 }
 
 //extra validators if we need to validate every element of the file
