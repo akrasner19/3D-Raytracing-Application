@@ -34,7 +34,7 @@ void Raytracer::generateImage(Geometry& geo)
 		for (int pixX = 0; pixX < geo.camera.sizeX; ++pixX)
 		{
 			//third, in each iteration, do the calculation stuff
-			double minT;
+			double minT = 10e10;
 			Shape closestObj;
 			closestObj.type = none;
 			double tempX = geo.camera.center.x + (geo.camera.resX * (pixX - (geo.camera.sizeX/2)));
@@ -45,7 +45,7 @@ void Raytracer::generateImage(Geometry& geo)
 			f2p.dirpt.z = tempZ - f2p.startpt.z;
 			double tLimit = f2p.magnitude();
 			f2p.normalize();
-			for (int i = 0; i < geo.shapes.size(); ++i)
+			for (size_t i = 0; i < geo.shapes.size(); ++i)
 			{
 				double t;
 				if (geo.shapes[i].intersect(f2p.startpt, f2p.dirpt, tLimit, t))
@@ -64,41 +64,81 @@ void Raytracer::generateImage(Geometry& geo)
 				vec2light.startpt.y = f2p.startpt.y + f2p.dirpt.y * minT;
 				vec2light.startpt.z = f2p.startpt.z + f2p.dirpt.z * minT;
 				double scaleFactor = 0;
-				for (int i = 0; i < geo.lights.size(); ++i)
+				Shape cameraPlane;
+				cameraPlane.type = plane;
+				cameraPlane.normal = geo.camera.normal;
+				cameraPlane.center = geo.camera.center;
+				for (size_t i = 0; i < geo.lights.size(); ++i)
 				{
-					vec2light.dirpt.x = geo.lights[i].location.x - vec2light.startpt.x;
-					vec2light.dirpt.y = geo.lights[i].location.y - vec2light.startpt.y;
-					vec2light.dirpt.z = geo.lights[i].location.z - vec2light.startpt.z;
+					vec2light.dirpt = subPts(geo.lights[i].location, vec2light.startpt);
 					vec2light.normalize();
-					bool clear = true;
-					for (int j = 0; j < geo.shapes.size(); ++j)
+					if (closestObj.type == sphere)
 					{
-						double tester;
-						if (geo.shapes[j].intersect(vec2light.startpt, vec2light.dirpt, 0, tester))
+						closestObj.normal = subPts(vec2light.startpt, closestObj.center);
+						if (closestObj.radius > 0)
 						{
-							if (tester > 0.0001)
+							closestObj.normal = multPt(closestObj.normal, double(1/closestObj.radius));
+						}
+						else
+						{
+							closestObj.r = 0;
+							closestObj.g = 0;
+							closestObj.b = 0;
+						}
+					}
+					double dp = dotProduct(closestObj.normal, vec2light.dirpt);
+					if (dp >= 0)
+					{
+						bool clear = true;
+						double camPlaneDist;
+						bool lightBehindCamera = cameraPlane.intersect(vec2light.startpt, vec2light.dirpt, 0, camPlaneDist);
+						for (size_t j = 0; j < geo.shapes.size(); ++j)
+						{
+							double tester;
+							if (geo.shapes[j].intersect(vec2light.startpt, vec2light.dirpt, 0, tester))
 							{
-								clear = false;
-								break;
+								if (lightBehindCamera)
+								{
+									if (tester > 0.00001 && tester <= camPlaneDist)
+									{
+										clear = false;
+										break;
+									}
+								}
+								else
+								{
+									if (tester > 0.00001)
+									{
+										clear = false;
+										break;
+									}
+								}
 							}
 						}
+						if (clear)
+						{
+							//std::cout << "Closest Object Normal: " << closestObj.normal.x << "," << closestObj.normal.y << "," << closestObj.normal.z << std::endl;
+							scaleFactor += dp * closestObj.lambert * geo.lights[i].intensity;
+						}
+						/*else
+						{
+							//std::string otype = (closestObj.type == sphere) ? "sphere" : "plane";
+							//std::cout << "Shaded object: " << otype << std::endl;
+						}*/
 					}
-					if (clear)
+					/*else
 					{
-						if (closestObj.type == sphere)
-						{
-							closestObj.normal = subPts(vec2light.startpt, closestObj.center);
-							Vec3d tempv3d;
-							tempv3d.dirpt = closestObj.normal;
-							tempv3d.normalize();
-							closestObj.normal = tempv3d.dirpt;
-						}
-						if (dotProduct(closestObj.normal, vec2light.dirpt) > 0)
-						{
-							scaleFactor += dotProduct(closestObj.normal, vec2light.dirpt) * closestObj.lambert * geo.lights[i].intensity;
-						}
-					}
+						//std::string otype = (closestObj.type == sphere) ? "sphere" : "plane";
+						//std::cout << "Shaded object: " << otype << std::endl;
+					}*/
+					
 				}
+				if (scaleFactor < 0)
+				{
+					std::cout << "your scaleFactor is negative this should not be happening" << std::endl;
+					scaleFactor = 0;
+				}
+				//std::cout << "scaleFactor: " << scaleFactor << std::endl;
 				image[pixX][pixY].r = scaleFactor * closestObj.r;
 				image[pixX][pixY].g = scaleFactor * closestObj.g;
 				image[pixX][pixY].b = scaleFactor * closestObj.b;
@@ -119,13 +159,13 @@ void Raytracer::generateImage(Geometry& geo)
 	}
 	if (maxValue > 0)
 	{
-		for (int y = 0; y < image[0].size(); ++y)
+		for (size_t y = 0; y < image[0].size(); ++y)
 		{
-			for (int x = 0; x < image.size(); ++x)
+			for (size_t x = 0; x < image.size(); ++x)
 			{
-				image[x][y].r = image[x][y].r * (255/maxValue);
-				image[x][y].g = image[x][y].g * (255/maxValue);
-				image[x][y].b = image[x][y].b * (255/maxValue);
+				image[x][y].r = image[x][y].r * 255.0 / maxValue;
+				image[x][y].g = image[x][y].g * 255.0 / maxValue;
+				image[x][y].b = image[x][y].b * 255.0 / maxValue;
 			}
 		}
 	}
