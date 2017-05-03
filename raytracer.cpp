@@ -4,10 +4,21 @@
 #include <QPoint>
 #include <cmath>
 #include <iostream>
+#include <list>
+#include <thread>
+#include <future>
+#include <utility>
+
+Raytracer::Raytracer(size_t threadnum)
+{
+	threadcount = threadnum;
+	maxVals.resize(threadcount, 0);
+}
 
 Raytracer::Raytracer()
 {
-
+	threadcount = 1;
+	maxVals.resize(threadcount, 0);
 }
 
 Raytracer::~Raytracer()
@@ -26,12 +37,79 @@ void Raytracer::generateImage(Geometry& geo)
 	zerovec.resize(geo.camera.sizeY, zero);
 	image.resize(geo.camera.sizeX, zerovec);
 	double maxValue = 0;
+	vector<std::thread> threads;
+	//vector<std::future> futs;
 	//second, iterate over the whole matrix to make the thing
+	//size_t threadindex = 0;
+	for (size_t threadindex = 0; threadindex < threadcount; ++threadindex)
+	{
+		//std::promise<double> p;
+		//threads.push_back(std::thread(&Raytracer::getMaxValue, this, std::move(p), geo, threadindex));
+		threads.push_back(std::thread(&Raytracer::raytrace, this, geo, threadindex));
+	}
+	for (size_t i = 0; i < threads.size(); ++i)
+	{
+		threads[i].join();
+	}
+	for (size_t n = 0; n < maxVals.size(); ++n)
+	{
+		//std::cout << maxVals[n] << std::endl;
+		if (maxVals[n] > maxValue)
+		{
+			maxValue = maxVals[n];
+		}
+	}
+	if (maxValue > 0)
+	{
+		for (size_t y = 0; y < image[0].size(); ++y)
+		{
+			for (size_t x = 0; x < image.size(); ++x)
+			{
+				image[x][y].r = double(image[x][y].r) * 255.0 / maxValue;
+				//std::cout << image[x][y].r << " ";
+				//if (image[x][y].r > 255) {image[x][y].r = 0;}
+				image[x][y].g = double(image[x][y].g) * 255.0 / maxValue;
+				//std::cout << image[x][y].g << " ";
+				//if (image[x][y].g > 255) {image[x][y].g = 0;}
+				image[x][y].b = double(image[x][y].b) * 255.0 / maxValue;
+				//std::cout << image[x][y].b << std::endl;
+				//if (image[x][y].b > 255) {image[x][y].b = 0;}
+			}
+		}
+	}
+}
+
+QImage Raytracer::getImage()
+{
+	if (image.size() > 0 && image[0].size() > 0)
+	{
+		QImage newImage(image.size(), image[0].size(), QImage::Format_RGB32);
+		for (int y = 0; y < newImage.height(); ++y)
+		{
+			for (int x = 0; x < newImage.width(); ++x)
+			{
+				/*if (image[x][y].r > 0)
+				{
+					std::cout << "r: " << image[x][y].r << ", g: " << image[x][y].g << ", b: " << image[x][y].b << std::endl;
+				}*/
+				QColor color(image[x][y].r, image[x][y].g, image[x][y].b);
+				newImage.setPixel(x, y, color.rgb());
+			}
+		}
+		return newImage;
+	}
+	QImage defaultImage;
+	return defaultImage;
+}
+
+void Raytracer::raytrace(Geometry geo, size_t threadindex)
+{
 	Vec3d f2p;
+	double maxValue = 0;
 	f2p.startpt = multPt(subPts(geo.camera.center, geo.camera.normal), geo.camera.focus);
 	for (int pixY = 0; pixY < geo.camera.sizeY; ++pixY)
 	{
-		for (int pixX = 0; pixX < geo.camera.sizeX; ++pixX)
+		for (int pixX = threadindex; pixX < geo.camera.sizeX; pixX += threadcount)
 		{
 			//third, in each iteration, do the calculation stuff
 			double minT = 10e10;
@@ -79,16 +157,11 @@ void Raytracer::generateImage(Geometry& geo)
 						{
 							closestObj.normal = multPt(closestObj.normal, double(1/closestObj.radius));
 						}
-						else
-						{
-							closestObj.r = 0;
-							closestObj.g = 0;
-							closestObj.b = 0;
-						}
 					}
 					double dp = dotProduct(closestObj.normal, vec2light.dirpt);
 					if (dp >= 0)
 					{
+						//std::cout << "Starting next light check" << std::endl;
 						bool clear = true;
 						double camPlaneDist;
 						bool lightBehindCamera = cameraPlane.intersect(vec2light.startpt, vec2light.dirpt, 0, camPlaneDist);
@@ -119,11 +192,13 @@ void Raytracer::generateImage(Geometry& geo)
 						{
 							//std::cout << "Closest Object Normal: " << closestObj.normal.x << "," << closestObj.normal.y << "," << closestObj.normal.z << std::endl;
 							scaleFactor += dp * closestObj.lambert * geo.lights[i].intensity;
+							//std::cout << "it is in fact clear and the scaleFactor is now: " << scaleFactor << std::endl;
 						}
 						/*else
 						{
 							//std::string otype = (closestObj.type == sphere) ? "sphere" : "plane";
 							//std::cout << "Shaded object: " << otype << std::endl;
+							std::cout << "bruh it's not clear" << std::endl;
 						}*/
 					}
 					/*else
@@ -133,9 +208,13 @@ void Raytracer::generateImage(Geometry& geo)
 					}*/
 					
 				}
+				/*if (scaleFactor > 0)
+				{
+					std::cout << "yo lit fam scaleFactor is greater than zero boiiiiiii" << std::endl;
+				}*/
 				if (scaleFactor < 0)
 				{
-					std::cout << "your scaleFactor is negative this should not be happening" << std::endl;
+					//std::cout << "your scaleFactor is negative this should not be happening" << std::endl;
 					scaleFactor = 0;
 				}
 				//std::cout << "scaleFactor: " << scaleFactor << std::endl;
@@ -157,40 +236,10 @@ void Raytracer::generateImage(Geometry& geo)
 			}
 		}
 	}
-	if (maxValue > 0)
-	{
-		for (size_t y = 0; y < image[0].size(); ++y)
-		{
-			for (size_t x = 0; x < image.size(); ++x)
-			{
-				image[x][y].r = image[x][y].r * 255.0 / maxValue;
-				image[x][y].g = image[x][y].g * 255.0 / maxValue;
-				image[x][y].b = image[x][y].b * 255.0 / maxValue;
-			}
-		}
-	}
+	maxVals[threadindex] = maxValue;
 }
 
-QImage Raytracer::getImage()
-{
-	if (image.size() > 0 && image[0].size() > 0)
-	{
-		QImage newImage(image.size(), image[0].size(), QImage::Format_RGB32);
-		for (int y = 0; y < newImage.height(); ++y)
-		{
-			for (int x = 0; x < newImage.width(); ++x)
-			{
-				/*if (image[x][y].r > 0)
-				{
-					std::cout << "r: " << image[x][y].r << ", g: " << image[x][y].g << ", b: " << image[x][y].b << std::endl;
-				}*/
-				QColor color(image[x][y].r, image[x][y].g, image[x][y].b);
-				newImage.setPixel(x, y, color.rgb());
-			}
-		}
-		return newImage;
-	}
-	QImage defaultImage;
-	return defaultImage;
-}
-
+//void Raytracer::getMaxValue(std::promise<double>&& p, Geometry& geo, size_t& threadindex)
+//{
+	//p.set_value(raytrace(geo, threadindex));
+//}

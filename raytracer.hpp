@@ -25,16 +25,23 @@ class Raytracer
 public:
 	Raytracer();
 
+	Raytracer(size_t threadnum);
+
 	~Raytracer();
 
 	void generateImage(Geometry& geo);
 
 	QImage getImage();
 
+	void raytrace(Geometry geo, size_t threadindex);
+
 private:
 	vector< vector<Pixel> > image;
 
-	//add helper methods that need image access here
+	size_t threadcount;
+
+	vector<double> maxVals;
+	//add helper methods that need image access in here
 
 };
 

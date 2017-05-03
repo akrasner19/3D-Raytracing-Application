@@ -71,7 +71,7 @@ TEST_CASE("Test Validation Function For Camera", "[geometry]")
 		{
 			Geometry geo(str);
 		}
-		catch(JSONParsingError& error)
+		catch(JSONParsingError&)
 		{
 			ok = false;
 		}
@@ -109,7 +109,7 @@ TEST_CASE("Test Validation Function For Camera", "[geometry]")
 		try{
 			Geometry geo(str);
 		}
-		catch(JSONParsingError& error)
+		catch(JSONParsingError&)
 		{
 			ok = false;
 		}
@@ -147,7 +147,7 @@ TEST_CASE("Test Validation Function For Camera", "[geometry]")
 		try{
 			Geometry geo(str);
 		}
-		catch(JSONParsingError& error)
+		catch(JSONParsingError&)
 		{
 			ok = false;
 		}
@@ -185,7 +185,7 @@ TEST_CASE("Test Validation Function For Camera", "[geometry]")
 		try{
 			Geometry geo(str);
 		}
-		catch(JSONParsingError& error)
+		catch(JSONParsingError&)
 		{
 			ok = false;
 		}
@@ -223,7 +223,7 @@ TEST_CASE("Test Validation Function For Camera", "[geometry]")
 		try{
 			Geometry geo(str);
 		}
-		catch(JSONParsingError& error)
+		catch(JSONParsingError&)
 		{
 			ok = false;
 		}
@@ -261,7 +261,7 @@ TEST_CASE("Test Validation Function For Camera", "[geometry]")
 		try{
 			Geometry geo(str);
 		}
-		catch(JSONParsingError& error)
+		catch(JSONParsingError&)
 		{
 			ok = false;
 		}
@@ -299,7 +299,7 @@ TEST_CASE("Test Validation Function For Camera", "[geometry]")
 		try{
 			Geometry geo(str);
 		}
-		catch(JSONParsingError& error)
+		catch(JSONParsingError&)
 		{
 			ok = false;
 		}
@@ -337,7 +337,7 @@ TEST_CASE("Test Validation Function For Camera", "[geometry]")
 		try{
 			Geometry geo(str);
 		}
-		catch(JSONParsingError& error)
+		catch(JSONParsingError&)
 		{
 			ok = false;
 		}
@@ -375,7 +375,7 @@ TEST_CASE("Test Validation Function For Camera", "[geometry]")
 		try{
 			Geometry geo(str);
 		}
-		catch(JSONParsingError& error)
+		catch(JSONParsingError&)
 		{
 			ok = false;
 		}
@@ -413,7 +413,7 @@ TEST_CASE("Test Validation Function For Camera", "[geometry]")
 		try{
 			Geometry geo(str);
 		}
-		catch(JSONParsingError& error)
+		catch(JSONParsingError&)
 		{
 			ok = false;
 		}
@@ -452,7 +452,7 @@ TEST_CASE("Test Validation Function For Camera", "[geometry]")
 		{
 			Geometry geo(str);
 		}
-		catch(JSONParsingError& error)
+		catch(JSONParsingError&)
 		{
 			ok = false;
 		}
@@ -491,7 +491,7 @@ TEST_CASE("Test Validation Function For Camera", "[geometry]")
 		{
 			Geometry geo(str);
 		}
-		catch(JSONParsingError& error)
+		catch(JSONParsingError&)
 		{
 			ok = false;
 		}
@@ -530,7 +530,7 @@ TEST_CASE("Test Validation Function For Camera", "[geometry]")
 		{
 			Geometry geo(str);
 		}
-		catch(JSONParsingError& error)
+		catch(JSONParsingError&)
 		{
 			ok = false;
 		}
@@ -573,7 +573,7 @@ TEST_CASE("Test Validation Function For Lights", "[geometry]")
 		{
 			Geometry geo(str);
 		}
-		catch(JSONParsingError& error)
+		catch(JSONParsingError&)
 		{
 			ok = false;
 		}
@@ -613,7 +613,7 @@ TEST_CASE("Test Validation Function For Lights", "[geometry]")
 		{
 			Geometry geo(str);
 		}
-		catch(JSONParsingError& error)
+		catch(JSONParsingError&)
 		{
 			ok = false;
 		}
@@ -652,7 +652,7 @@ TEST_CASE("Test Validation Function For Lights", "[geometry]")
 		{
 			Geometry geo(str);
 		}
-		catch(JSONParsingError& error)
+		catch(JSONParsingError&)
 		{
 			ok = false;
 		}
@@ -691,7 +691,7 @@ TEST_CASE("Test Validation Function For Lights", "[geometry]")
 		{
 			Geometry geo(str);
 		}
-		catch(JSONParsingError& error)
+		catch(JSONParsingError&)
 		{
 			ok = false;
 		}
@@ -730,7 +730,7 @@ TEST_CASE("Test Validation Function For Lights", "[geometry]")
 		{
 			Geometry geo(str);
 		}
-		catch(JSONParsingError& error)
+		catch(JSONParsingError&)
 		{
 			ok = false;
 		}
@@ -769,7 +769,7 @@ TEST_CASE("Test Validation Function For Lights", "[geometry]")
 		{
 			Geometry geo(str);
 		}
-		catch(JSONParsingError& error)
+		catch(JSONParsingError&)
 		{
 			ok = false;
 		}
@@ -812,7 +812,7 @@ TEST_CASE("Test Validation Function For Object Sphere", "[geometry]")
 		{
 			Geometry geo(str);
 		}
-		catch(JSONParsingError& error)
+		catch(JSONParsingError&)
 		{
 			ok = false;
 		}
@@ -852,7 +852,7 @@ TEST_CASE("Test Validation Function For Object Sphere", "[geometry]")
 		{
 			Geometry geo(str);
 		}
-		catch(JSONParsingError& error)
+		catch(JSONParsingError&)
 		{
 			ok = false;
 		}
@@ -891,7 +891,7 @@ TEST_CASE("Test Validation Function For Object Sphere", "[geometry]")
 		{
 			Geometry geo(str);
 		}
-		catch(JSONParsingError& error)
+		catch(JSONParsingError&)
 		{
 			ok = false;
 		}
@@ -930,7 +930,7 @@ TEST_CASE("Test Validation Function For Object Sphere", "[geometry]")
 		{
 			Geometry geo(str);
 		}
-		catch(JSONParsingError& error)
+		catch(JSONParsingError&)
 		{
 			ok = false;
 		}
@@ -969,7 +969,7 @@ TEST_CASE("Test Validation Function For Object Sphere", "[geometry]")
 		{
 			Geometry geo(str);
 		}
-		catch(JSONParsingError& error)
+		catch(JSONParsingError&)
 		{
 			ok = false;
 		}
@@ -1008,7 +1008,7 @@ TEST_CASE("Test Validation Function For Object Sphere", "[geometry]")
 		{
 			Geometry geo(str);
 		}
-		catch(JSONParsingError& error)
+		catch(JSONParsingError&)
 		{
 			ok = false;
 		}
@@ -1047,7 +1047,7 @@ TEST_CASE("Test Validation Function For Object Sphere", "[geometry]")
 		{
 			Geometry geo(str);
 		}
-		catch(JSONParsingError& error)
+		catch(JSONParsingError&)
 		{
 			ok = false;
 		}
@@ -1086,7 +1086,7 @@ TEST_CASE("Test Validation Function For Object Sphere", "[geometry]")
 		{
 			Geometry geo(str);
 		}
-		catch(JSONParsingError& error)
+		catch(JSONParsingError&)
 		{
 			ok = false;
 		}
@@ -1125,7 +1125,7 @@ TEST_CASE("Test Validation Function For Object Sphere", "[geometry]")
 		{
 			Geometry geo(str);
 		}
-		catch(JSONParsingError& error)
+		catch(JSONParsingError&)
 		{
 			ok = false;
 		}
@@ -1164,7 +1164,7 @@ TEST_CASE("Test Validation Function For Object Sphere", "[geometry]")
 		{
 			Geometry geo(str);
 		}
-		catch(JSONParsingError& error)
+		catch(JSONParsingError&)
 		{
 			ok = false;
 		}
@@ -1203,7 +1203,7 @@ TEST_CASE("Test Validation Function For Object Sphere", "[geometry]")
 		{
 			Geometry geo(str);
 		}
-		catch(JSONParsingError& error)
+		catch(JSONParsingError&)
 		{
 			ok = false;
 		}
@@ -1242,7 +1242,7 @@ TEST_CASE("Test Validation Function For Object Sphere", "[geometry]")
 		{
 			Geometry geo(str);
 		}
-		catch(JSONParsingError& error)
+		catch(JSONParsingError&)
 		{
 			ok = false;
 		}
@@ -1281,7 +1281,7 @@ TEST_CASE("Test Validation Function For Object Sphere", "[geometry]")
 		{
 			Geometry geo(str);
 		}
-		catch(JSONParsingError& error)
+		catch(JSONParsingError&)
 		{
 			ok = false;
 		}
@@ -1325,7 +1325,7 @@ TEST_CASE("Test Validation Function For Object Plane", "[geometry]")
 		{
 			Geometry geo(str);
 		}
-		catch(JSONParsingError& error)
+		catch(JSONParsingError&)
 		{
 			ok = false;
 		}
@@ -1365,7 +1365,7 @@ TEST_CASE("Test Validation Function For Object Plane", "[geometry]")
 		{
 			Geometry geo(str);
 		}
-		catch(JSONParsingError& error)
+		catch(JSONParsingError&)
 		{
 			ok = false;
 		}
@@ -1404,7 +1404,7 @@ TEST_CASE("Test Validation Function For Object Plane", "[geometry]")
 		{
 			Geometry geo(str);
 		}
-		catch(JSONParsingError& error)
+		catch(JSONParsingError&)
 		{
 			ok = false;
 		}
@@ -1443,7 +1443,7 @@ TEST_CASE("Test Validation Function For Object Plane", "[geometry]")
 		{
 			Geometry geo(str);
 		}
-		catch(JSONParsingError& error)
+		catch(JSONParsingError&)
 		{
 			ok = false;
 		}
@@ -1482,7 +1482,7 @@ TEST_CASE("Test Validation Function For Object Plane", "[geometry]")
 		{
 			Geometry geo(str);
 		}
-		catch(JSONParsingError& error)
+		catch(JSONParsingError&)
 		{
 			ok = false;
 		}
@@ -1521,7 +1521,7 @@ TEST_CASE("Test Validation Function For Object Plane", "[geometry]")
 		{
 			Geometry geo(str);
 		}
-		catch(JSONParsingError& error)
+		catch(JSONParsingError&)
 		{
 			ok = false;
 		}
@@ -1560,7 +1560,7 @@ TEST_CASE("Test Validation Function For Object Plane", "[geometry]")
 		{
 			Geometry geo(str);
 		}
-		catch(JSONParsingError& error)
+		catch(JSONParsingError&)
 		{
 			ok = false;
 		}
@@ -1599,7 +1599,7 @@ TEST_CASE("Test Validation Function For Object Plane", "[geometry]")
 		{
 			Geometry geo(str);
 		}
-		catch(JSONParsingError& error)
+		catch(JSONParsingError&)
 		{
 			ok = false;
 		}
@@ -1638,7 +1638,7 @@ TEST_CASE("Test Validation Function For Object Plane", "[geometry]")
 		{
 			Geometry geo(str);
 		}
-		catch(JSONParsingError& error)
+		catch(JSONParsingError&)
 		{
 			ok = false;
 		}
@@ -1677,7 +1677,7 @@ TEST_CASE("Test Validation Function For Object Plane", "[geometry]")
 		{
 			Geometry geo(str);
 		}
-		catch(JSONParsingError& error)
+		catch(JSONParsingError&)
 		{
 			ok = false;
 		}
@@ -1716,7 +1716,7 @@ TEST_CASE("Test Validation Function For Object Plane", "[geometry]")
 		{
 			Geometry geo(str);
 		}
-		catch(JSONParsingError& error)
+		catch(JSONParsingError&)
 		{
 			ok = false;
 		}
@@ -1755,7 +1755,7 @@ TEST_CASE("Test Validation Function For Object Plane", "[geometry]")
 		{
 			Geometry geo(str);
 		}
-		catch(JSONParsingError& error)
+		catch(JSONParsingError&)
 		{
 			ok = false;
 		}
@@ -1794,7 +1794,7 @@ TEST_CASE("Test Validation Function For Object Plane", "[geometry]")
 		{
 			Geometry geo(str);
 		}
-		catch(JSONParsingError& error)
+		catch(JSONParsingError&)
 		{
 			ok = false;
 		}
@@ -1833,7 +1833,7 @@ TEST_CASE("Test Validation Function For Object Plane", "[geometry]")
 		{
 			Geometry geo(str);
 		}
-		catch(JSONParsingError& error)
+		catch(JSONParsingError&)
 		{
 			ok = false;
 		}
@@ -1872,7 +1872,7 @@ TEST_CASE("Test Validation Function For Object Plane", "[geometry]")
 		{
 			Geometry geo(str);
 		}
-		catch(JSONParsingError& error)
+		catch(JSONParsingError&)
 		{
 			ok = false;
 		}
@@ -1917,7 +1917,7 @@ TEST_CASE("Test Running Program", "[raytracer]")
 			rt.generateImage(geo);
 			QImage pic = rt.getImage();
 		}
-		catch(JSONParsingError& error)
+		catch(JSONParsingError&)
 		{
 			ok = false;
 		}
@@ -1959,7 +1959,56 @@ TEST_CASE("Test Running Program", "[raytracer]")
 			rt.generateImage(geo);
 			QImage pic = rt.getImage();
 		}
-		catch(JSONParsingError& error)
+		catch(JSONParsingError&)
+		{
+			ok = false;
+		}
+		REQUIRE(ok);
+	}
+
+	{ //good plane with light in the back and 2 threads
+		std::string str =	
+		"{ "
+			"\"camera\": { "
+		        "\"center\": { \"x\": 0, \"y\": 0, \"z\": 0}, "
+		        "\"focus\": 10, "
+		        "\"normal\": { \"x\": 0, \"y\": 0, \"z\": 1}, "
+		        "\"resolution\": [0.01, 0.01], "
+		        "\"size\": [256,256] "
+		    "}, "
+		    "\"lights\": [ "
+		        "{ "
+		            "\"intensity\": 1, "
+		            "\"location\": { \"x\": 5, \"y\": -5, \"z\": -2} "
+		        "} "
+		    "], "
+		    "\"objects\": [ "
+		        "{ "
+		            "\"center\": { \"x\": 0, \"y\": 0, \"z\": 5}, "
+		            "\"color\": {\"b\": 255, \"g\": 255, \"r\": 255}, "
+		            "\"lambert\": 1, "
+		            "\"normal\": { \"x\": 5, \"y\": -5, \"z\": 0}, "
+		            "\"type\": \"plane\" "
+		        "}, "
+		        "{ "
+		            "\"center\": { \"x\": 0, \"y\": 0, \"z\": 5}, "
+		            "\"color\": {\"b\": 128, \"g\": 128, \"r\": 255}, "
+		            "\"lambert\": 1, "
+		            "\"radius\": 1, "
+		            "\"type\": \"sphere\" "
+		        "} "
+		    "] "
+		"}";
+
+		bool ok = true;
+		try
+		{
+			Geometry geo(str);
+			Raytracer rt(2);
+			rt.generateImage(geo);
+			QImage pic = rt.getImage();
+		}
+		catch(JSONParsingError&)
 		{
 			ok = false;
 		}

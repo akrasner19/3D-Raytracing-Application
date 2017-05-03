@@ -43,6 +43,7 @@ int main(int argc, char*argv[])
 			//do all calculation and output stuff in here
 			Raytracer rt;
 			rt.generateImage(geo);
+
 			QImage pic = rt.getImage();
 			if (pic.isNull())
 			{
@@ -50,6 +51,7 @@ int main(int argc, char*argv[])
 				return EXIT_FAILURE;
 			}
 			pic.save(picname);
+
 			//temp testing shit
 			//std::cout << geo.lights.size() << " lights" << endl;
 			//std::cout << geo.shapes.size() << " shapes" << endl;
@@ -72,7 +74,12 @@ int main(int argc, char*argv[])
 			cerr << "Error: invalid tag, use \"-t\"" << endl;
 			return EXIT_FAILURE;
 		}
-
+		if (numthreads <= 0)
+		{
+			cerr << "Error: invalid number of threads" << endl;
+			return EXIT_FAILURE;
+		}
+		size_t tc = numthreads;
 		std::ifstream infile(infilename);
 		if (!infile.is_open())
 		{
@@ -93,7 +100,7 @@ int main(int argc, char*argv[])
 			//make geometry
 			Geometry geo(ss.str());
 			//do all calculation and output stuff in here
-			Raytracer rt;
+			Raytracer rt(tc);
 			rt.generateImage(geo);
 			QImage pic = rt.getImage();
 			if (pic.isNull())
@@ -102,6 +109,7 @@ int main(int argc, char*argv[])
 				return EXIT_FAILURE;
 			}
 			pic.save(picname);
+
 			//temp testing shit
 			//std::cout << geo.lights.size() << " lights" << endl;
 			//std::cout << geo.shapes.size() << " shapes" << endl;
