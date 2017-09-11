@@ -1,0 +1,58 @@
+[
+{
+  "directory": "C:/Users/Alex/Documents/applied/project3-akrasner19/build",
+  "command": "C:\\PROGRA~2\\MICROS~1.0\\VC\\bin\\cl.exe  @<<
+ /nologo /TP -DQT_CORE_LIB -DQT_GUI_LIB -IC:\\Users\\Alex\\Documents\\applied\\project3-akrasner19\\build -IC:\\Users\\Alex\\Documents\\applied\\project3-akrasner19 -IC:\\Qt\\Qt5.8.0\\5.8\\msvc2015\\include -IC:\\Qt\\Qt5.8.0\\5.8\\msvc2015\\include\\QtGui -IC:\\Qt\\Qt5.8.0\\5.8\\msvc2015\\include\\QtANGLE -IC:\\Qt\\Qt5.8.0\\5.8\\msvc2015\\include\\QtCore -IC:\\Qt\\Qt5.8.0\\5.8\\msvc2015\\.\\mkspecs\\win32-msvc2015  /DWIN32 /D_WINDOWS /W3 /GR /EHsc /D_DEBUG /MDd /Zi /Ob0 /Od /RTC1   /FoCMakeFiles\\unittests.dir\\unittests.cpp.obj /FdCMakeFiles\\unittests.dir\\ /FS -c C:\\Users\\Alex\\Documents\\applied\\project3-akrasner19\\unittests.cpp
+<<",
+  "file": "C:/Users/Alex/Documents/applied/project3-akrasner19/unittests.cpp"
+},
+{
+  "directory": "C:/Users/Alex/Documents/applied/project3-akrasner19/build",
+  "command": "C:\\PROGRA~2\\MICROS~1.0\\VC\\bin\\cl.exe  @<<
+ /nologo /TP -DQT_CORE_LIB -DQT_GUI_LIB -IC:\\Users\\Alex\\Documents\\applied\\project3-akrasner19\\build -IC:\\Users\\Alex\\Documents\\applied\\project3-akrasner19 -IC:\\Qt\\Qt5.8.0\\5.8\\msvc2015\\include -IC:\\Qt\\Qt5.8.0\\5.8\\msvc2015\\include\\QtGui -IC:\\Qt\\Qt5.8.0\\5.8\\msvc2015\\include\\QtANGLE -IC:\\Qt\\Qt5.8.0\\5.8\\msvc2015\\include\\QtCore -IC:\\Qt\\Qt5.8.0\\5.8\\msvc2015\\.\\mkspecs\\win32-msvc2015  /DWIN32 /D_WINDOWS /W3 /GR /EHsc /D_DEBUG /MDd /Zi /Ob0 /Od /RTC1   /FoCMakeFiles\\unittests.dir\\geometry.cpp.obj /FdCMakeFiles\\unittests.dir\\ /FS -c C:\\Users\\Alex\\Documents\\applied\\project3-akrasner19\\geometry.cpp
+<<",
+  "file": "C:/Users/Alex/Documents/applied/project3-akrasner19/geometry.cpp"
+},
+{
+  "directory": "C:/Users/Alex/Documents/applied/project3-akrasner19/build",
+  "command": "C:\\PROGRA~2\\MICROS~1.0\\VC\\bin\\cl.exe  @<<
+ /nologo /TP -DQT_CORE_LIB -DQT_GUI_LIB -IC:\\Users\\Alex\\Documents\\applied\\project3-akrasner19\\build -IC:\\Users\\Alex\\Documents\\applied\\project3-akrasner19 -IC:\\Qt\\Qt5.8.0\\5.8\\msvc2015\\include -IC:\\Qt\\Qt5.8.0\\5.8\\msvc2015\\include\\QtGui -IC:\\Qt\\Qt5.8.0\\5.8\\msvc2015\\include\\QtANGLE -IC:\\Qt\\Qt5.8.0\\5.8\\msvc2015\\include\\QtCore -IC:\\Qt\\Qt5.8.0\\5.8\\msvc2015\\.\\mkspecs\\win32-msvc2015  /DWIN32 /D_WINDOWS /W3 /GR /EHsc /D_DEBUG /MDd /Zi /Ob0 /Od /RTC1   /FoCMakeFiles\\unittests.dir\\raytracer.cpp.obj /FdCMakeFiles\\unittests.dir\\ /FS -c C:\\Users\\Alex\\Documents\\applied\\project3-akrasner19\\raytracer.cpp
+<<",
+  "file": "C:/Users/Alex/Documents/applied/project3-akrasner19/raytracer.cpp"
+},
+{
+  "directory": "C:/Users/Alex/Documents/applied/project3-akrasner19/build",
+  "command": "C:\\PROGRA~2\\MICROS~1.0\\VC\\bin\\cl.exe  @<<
+ /nologo /TP -DQT_CORE_LIB -DQT_GUI_LIB -IC:\\Users\\Alex\\Documents\\applied\\project3-akrasner19\\build -IC:\\Users\\Alex\\Documents\\applied\\project3-akrasner19 -IC:\\Qt\\Qt5.8.0\\5.8\\msvc2015\\include -IC:\\Qt\\Qt5.8.0\\5.8\\msvc2015\\include\\QtGui -IC:\\Qt\\Qt5.8.0\\5.8\\msvc2015\\include\\QtANGLE -IC:\\Qt\\Qt5.8.0\\5.8\\msvc2015\\include\\QtCore -IC:\\Qt\\Qt5.8.0\\5.8\\msvc2015\\.\\mkspecs\\win32-msvc2015  /DWIN32 /D_WINDOWS /W3 /GR /EHsc /D_DEBUG /MDd /Zi /Ob0 /Od /RTC1   /FoCMakeFiles\\unittests.dir\\unittests_automoc.cpp.obj /FdCMakeFiles\\unittests.dir\\ /FS -c C:\\Users\\Alex\\Documents\\applied\\project3-akrasner19\\build\\unittests_automoc.cpp
+<<",
+  "file": "C:/Users/Alex/Documents/applied/project3-akrasner19/build/unittests_automoc.cpp"
+},
+{
+  "directory": "C:/Users/Alex/Documents/applied/project3-akrasner19/build",
+  "command": "C:\\PROGRA~2\\MICROS~1.0\\VC\\bin\\cl.exe  @<<
+ /nologo /TP -DQT_CORE_LIB -DQT_GUI_LIB -IC:\\Users\\Alex\\Documents\\applied\\project3-akrasner19\\build -IC:\\Users\\Alex\\Documents\\applied\\project3-akrasner19 -IC:\\Qt\\Qt5.8.0\\5.8\\msvc2015\\include -IC:\\Qt\\Qt5.8.0\\5.8\\msvc2015\\include\\QtGui -IC:\\Qt\\Qt5.8.0\\5.8\\msvc2015\\include\\QtANGLE -IC:\\Qt\\Qt5.8.0\\5.8\\msvc2015\\include\\QtCore -IC:\\Qt\\Qt5.8.0\\5.8\\msvc2015\\.\\mkspecs\\win32-msvc2015  /DWIN32 /D_WINDOWS /W3 /GR /EHsc /D_DEBUG /MDd /Zi /Ob0 /Od /RTC1   /FoCMakeFiles\\vtray.dir\\vtray.cpp.obj /FdCMakeFiles\\vtray.dir\\ /FS -c C:\\Users\\Alex\\Documents\\applied\\project3-akrasner19\\vtray.cpp
+<<",
+  "file": "C:/Users/Alex/Documents/applied/project3-akrasner19/vtray.cpp"
+},
+{
+  "directory": "C:/Users/Alex/Documents/applied/project3-akrasner19/build",
+  "command": "C:\\PROGRA~2\\MICROS~1.0\\VC\\bin\\cl.exe  @<<
+ /nologo /TP -DQT_CORE_LIB -DQT_GUI_LIB -IC:\\Users\\Alex\\Documents\\applied\\project3-akrasner19\\build -IC:\\Users\\Alex\\Documents\\applied\\project3-akrasner19 -IC:\\Qt\\Qt5.8.0\\5.8\\msvc2015\\include -IC:\\Qt\\Qt5.8.0\\5.8\\msvc2015\\include\\QtGui -IC:\\Qt\\Qt5.8.0\\5.8\\msvc2015\\include\\QtANGLE -IC:\\Qt\\Qt5.8.0\\5.8\\msvc2015\\include\\QtCore -IC:\\Qt\\Qt5.8.0\\5.8\\msvc2015\\.\\mkspecs\\win32-msvc2015  /DWIN32 /D_WINDOWS /W3 /GR /EHsc /D_DEBUG /MDd /Zi /Ob0 /Od /RTC1   /FoCMakeFiles\\vtray.dir\\geometry.cpp.obj /FdCMakeFiles\\vtray.dir\\ /FS -c C:\\Users\\Alex\\Documents\\applied\\project3-akrasner19\\geometry.cpp
+<<",
+  "file": "C:/Users/Alex/Documents/applied/project3-akrasner19/geometry.cpp"
+},
+{
+  "directory": "C:/Users/Alex/Documents/applied/project3-akrasner19/build",
+  "command": "C:\\PROGRA~2\\MICROS~1.0\\VC\\bin\\cl.exe  @<<
+ /nologo /TP -DQT_CORE_LIB -DQT_GUI_LIB -IC:\\Users\\Alex\\Documents\\applied\\project3-akrasner19\\build -IC:\\Users\\Alex\\Documents\\applied\\project3-akrasner19 -IC:\\Qt\\Qt5.8.0\\5.8\\msvc2015\\include -IC:\\Qt\\Qt5.8.0\\5.8\\msvc2015\\include\\QtGui -IC:\\Qt\\Qt5.8.0\\5.8\\msvc2015\\include\\QtANGLE -IC:\\Qt\\Qt5.8.0\\5.8\\msvc2015\\include\\QtCore -IC:\\Qt\\Qt5.8.0\\5.8\\msvc2015\\.\\mkspecs\\win32-msvc2015  /DWIN32 /D_WINDOWS /W3 /GR /EHsc /D_DEBUG /MDd /Zi /Ob0 /Od /RTC1   /FoCMakeFiles\\vtray.dir\\raytracer.cpp.obj /FdCMakeFiles\\vtray.dir\\ /FS -c C:\\Users\\Alex\\Documents\\applied\\project3-akrasner19\\raytracer.cpp
+<<",
+  "file": "C:/Users/Alex/Documents/applied/project3-akrasner19/raytracer.cpp"
+},
+{
+  "directory": "C:/Users/Alex/Documents/applied/project3-akrasner19/build",
+  "command": "C:\\PROGRA~2\\MICROS~1.0\\VC\\bin\\cl.exe  @<<
+ /nologo /TP -DQT_CORE_LIB -DQT_GUI_LIB -IC:\\Users\\Alex\\Documents\\applied\\project3-akrasner19\\build -IC:\\Users\\Alex\\Documents\\applied\\project3-akrasner19 -IC:\\Qt\\Qt5.8.0\\5.8\\msvc2015\\include -IC:\\Qt\\Qt5.8.0\\5.8\\msvc2015\\include\\QtGui -IC:\\Qt\\Qt5.8.0\\5.8\\msvc2015\\include\\QtANGLE -IC:\\Qt\\Qt5.8.0\\5.8\\msvc2015\\include\\QtCore -IC:\\Qt\\Qt5.8.0\\5.8\\msvc2015\\.\\mkspecs\\win32-msvc2015  /DWIN32 /D_WINDOWS /W3 /GR /EHsc /D_DEBUG /MDd /Zi /Ob0 /Od /RTC1   /FoCMakeFiles\\vtray.dir\\vtray_automoc.cpp.obj /FdCMakeFiles\\vtray.dir\\ /FS -c C:\\Users\\Alex\\Documents\\applied\\project3-akrasner19\\build\\vtray_automoc.cpp
+<<",
+  "file": "C:/Users/Alex/Documents/applied/project3-akrasner19/build/vtray_automoc.cpp"
+}
+]

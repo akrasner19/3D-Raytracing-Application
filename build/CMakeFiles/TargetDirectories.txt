@@ -1,0 +1,7 @@
+C:/Users/Alex/Documents/applied/project3-akrasner19/build/CMakeFiles/unittests.dir
+C:/Users/Alex/Documents/applied/project3-akrasner19/build/CMakeFiles/rebuild_cache.dir
+C:/Users/Alex/Documents/applied/project3-akrasner19/build/CMakeFiles/vtray.dir
+C:/Users/Alex/Documents/applied/project3-akrasner19/build/CMakeFiles/test.dir
+C:/Users/Alex/Documents/applied/project3-akrasner19/build/CMakeFiles/edit_cache.dir
+C:/Users/Alex/Documents/applied/project3-akrasner19/build/CMakeFiles/unittests_automoc.dir
+C:/Users/Alex/Documents/applied/project3-akrasner19/build/CMakeFiles/vtray_automoc.dir
