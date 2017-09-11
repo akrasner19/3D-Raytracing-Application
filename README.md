@@ -15,9 +15,9 @@ It accomplishes the rendering using threads. By default there is only one thread
 
 Given the files `scene1.json` and `scene2.json`, the application will output the below images
 
-![alt text](https://github.com/akrasner19/3D-Raytracing-Application/tests/scene1.png "Output for scene1.json")
+![alt text](https://github.com/akrasner19/3D-Raytracing-Application/blob/master/tests/scene1.png "Output for scene1.json")
 
-![alt text](https://github.com/akrasner19/3D-Raytracing-Application/tests/scene2.png "Output for scene2.json")
+![alt text](https://github.com/akrasner19/3D-Raytracing-Application/blob/master/tests/scene2.png "Output for scene2.json")
 
 The rendering process is accomplished by having threads go through each pixel and calculates the image value. These RGB values are determined based on the vector from the light source(s), any blocked light source(s), the surface color, and the lambert coefficient of the surface. The value is stored in a vector that is accessible to each thread. To prevent overlap, each thread increments through the x-values of the pixel grid by the number of threads that exist. Each time it starts a thread it begins the index into the grid at the location of the thread number.
 
